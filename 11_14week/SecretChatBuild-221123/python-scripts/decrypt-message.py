@@ -9,6 +9,8 @@ def read_from_base64():
     return [ decode_base64(input()), decode_base64(input()), decode_base64(input())]
 
 def decrypt_message(key, iv, message):
+    d = AES.new(key, AES.MODE_CBC, iv)
+    return unpad(d.decrypt(message), 16)
     # AES 256 암호화 구현
 
 [secretkey, iv, message] = read_from_base64()

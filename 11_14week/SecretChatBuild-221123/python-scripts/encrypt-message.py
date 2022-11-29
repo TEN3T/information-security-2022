@@ -17,12 +17,14 @@ def pad_message(msg):
     return padded_msg
 
 def encrypt_message(key, iv, msg):
+    e = AES.new(key, AES.MODE_CBC, iv)
+    return encode_base64(e.encrypt(msg))
     # AES 256 암호화 구현
 
 [secretkey, message] = read_from_base64()
 
 message = pad_message(message)
-randomiv = # 16바이트 (128비트 IV 랜덤 생성)
+randomiv = get_random_bytes(16) # 16바이트 (128비트 IV 랜덤 생성)
 
 randomiv_str = encode_base64(randomiv)
 cipher_str = encrypt_message(secretkey, randomiv, message)
